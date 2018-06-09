@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qhz.comb.provider.bus.mapper.BorrowMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.qhz.comb.provider.bus.model.domain.Borrow">
+                    <id column="borrowID" property="borrowID" />
+                    <result column="userID" property="userID" />
+                    <result column="phone" property="phone" />
+                    <result column="orderNO" property="orderNO" />
+                    <result column="loanNO" property="loanNO" />
+                    <result column="cancelNO" property="cancelNO" />
+                    <result column="borrowNO" property="borrowNO" />
+                    <result column="realName" property="realName" />
+                    <result column="accNO" property="accNO" />
+                    <result column="borrowUserID" property="borrowUserID" />
+                    <result column="projectType" property="projectType" />
+                    <result column="guaranteeID" property="guaranteeID" />
+                    <result column="borrowType" property="borrowType" />
+                    <result column="activityType" property="activityType" />
+                    <result column="borrowTitle" property="borrowTitle" />
+                    <result column="borrowStatus" property="borrowStatus" />
+                    <result column="borrowMoney" property="borrowMoney" />
+                    <result column="realBorrowMoney" property="realBorrowMoney" />
+                    <result column="borrowFees" property="borrowFees" />
+                    <result column="guaFees" property="guaFees" />
+                    <result column="totalReceipts" property="totalReceipts" />
+                    <result column="repaymentCapital" property="repaymentCapital" />
+                    <result column="repaymentInterest" property="repaymentInterest" />
+                    <result column="tendertimes" property="tendertimes" />
+                    <result column="borrowApr" property="borrowApr" />
+                    <result column="borrowAprSub" property="borrowAprSub" />
+                    <result column="isVip" property="isVip" />
+                    <result column="isTicket" property="isTicket" />
+                    <result column="borrowDays" property="borrowDays" />
+                    <result column="borrowLimit" property="borrowLimit" />
+                    <result column="repaymentStyle" property="repaymentStyle" />
+                    <result column="minTender" property="minTender" />
+                    <result column="maxTender" property="maxTender" />
+                    <result column="endBorrowtime" property="endBorrowtime" />
+                    <result column="publishDatetime" property="publishDatetime" />
+                    <result column="fullDatetime" property="fullDatetime" />
+                    <result column="validTime" property="validTime" />
+                    <result column="auditDatetime" property="auditDatetime" />
+                    <result column="auditRemark" property="auditRemark" />
+                    <result column="auditUserID" property="auditUserID" />
+                    <result column="reviewDatetime" property="reviewDatetime" />
+                    <result column="reviewRemark" property="reviewRemark" />
+                    <result column="reviewUserID" property="reviewUserID" />
+                    <result column="borrowPassword" property="borrowPassword" />
+                    <result column="borrowRemark" property="borrowRemark" />
+                    <result column="returnContent" property="returnContent" />
+                    <result column="addDatetime" property="addDatetime" />
+                    <result column="editDatetime" property="editDatetime" />
+                    <result column="terminal" property="terminal" />
+                    <result column="operateIP" property="operateIP" />
+                    <result column="repayAuthNo" property="repayAuthNo" />
+                    <result column="repayAuthStatus" property="repayAuthStatus" />
+                    <result column="assetRating" property="assetRating" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            borrowID, userID, phone, orderNO, loanNO, cancelNO, borrowNO, realName, accNO, borrowUserID, projectType, guaranteeID, borrowType, activityType, borrowTitle, borrowStatus, borrowMoney, realBorrowMoney, borrowFees, guaFees, totalReceipts, repaymentCapital, repaymentInterest, tendertimes, borrowApr, borrowAprSub, isVip, isTicket, borrowDays, borrowLimit, repaymentStyle, minTender, maxTender, endBorrowtime, publishDatetime, fullDatetime, validTime, auditDatetime, auditRemark, auditUserID, reviewDatetime, reviewRemark, reviewUserID, borrowPassword, borrowRemark, returnContent, addDatetime, editDatetime, terminal, operateIP, repayAuthNo, repayAuthStatus, assetRating
+        </sql>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qhz.comb.auth.mapper.SysOauthClientMapper">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.qhz.comb.auth.model.domain.SysOauthClient">
+                    <id column="id" property="id" />
+                    <result column="client_id" property="clientId" />
+                    <result column="client_secret" property="clientSecret" />
+                    <result column="scopes" property="scopes" />
+                    <result column="authorized_grant_types" property="authorizedGrantTypes" />
+                    <result column="resource_ids" property="resourceIds" />
+                    <result column="auto_approves" property="autoApproves" />
+                    <result column="redirect_uri" property="redirectUri" />
+                    <result column="access_token_validity" property="accessTokenValidity" />
+                    <result column="refresh_token_validity" property="refreshTokenValidity" />
+                    <result column="additional_information" property="additionalInformation" />
+                    <result column="enable" property="enable" />
+                    <result column="creator_id" property="creatorId" />
+                    <result column="created_time" property="createdTime" />
+                    <result column="modifier_id" property="modifierId" />
+                    <result column="modified_time" property="modifiedTime" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, client_id AS clientId, client_secret AS clientSecret, scopes, authorized_grant_types AS authorizedGrantTypes, resource_ids AS resourceIds, auto_approves AS autoApproves, redirect_uri AS redirectUri, access_token_validity AS accessTokenValidity, refresh_token_validity AS refreshTokenValidity, additional_information AS additionalInformation, enable, creator_id AS creatorId, created_time AS createdTime, modifier_id AS modifierId, modified_time AS modifiedTime
+        </sql>
+
+</mapper>

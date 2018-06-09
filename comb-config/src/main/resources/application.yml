@@ -1,0 +1,39 @@
+security:
+  basic:
+    enabled: true                          #  开启基于HTTP basic的认证
+  user:
+    name: ${CONFIG_SERVER_USERNAME:root}                             # 配置登录的账号
+    password: ${CONFIG_SERVER_PASSWORD:root}                         # 配置登录的密码
+
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+        git:
+          uri: http://git.qianbox.net/scm/git/qhzloan            # 配置git仓库的地址
+          search-paths: qhzloan-config-repo                      # git仓库地址下的相对地址，可以配置多个用,分割。
+          username: configuser                                   # git仓库的账号
+          password: qhz159357                                    # git仓库的密码
+  profiles:
+     active: native
+
+eureka:
+  instance:
+    hostname: comb-eureka
+    prefer-ip-address: true
+    metadata-map:
+      user.name: ${security.user.name}
+      user.password: ${security.user.password}
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_SERVER_USERNAME:root}:${EUREKA_SERVER_PASSWORD:root}@${eureka.instance.hostname}:8761/eureka/
+    instance:
+      instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+
+logging:
+  file: ../logs/${spring.application.name}.log

@@ -1,0 +1,35 @@
+spring:
+  profiles:
+    active: @profileActive@
+
+server:
+  port: 8761
+
+security:
+  basic:
+    enabled: true                              #eureka 用户是否认证
+  user:
+    name: ${EUREKA_SERVER_USERNAME:root}                                   #eureka 用户名
+    password: ${EUREKA_SERVER_PASSWORD:root}                               #eureka 密码
+
+management:
+  security:
+    enabled: false # spring-boot 1.5.2之后严格执行安全策略，所以需要配置这个为false ,否则很多点监控不到
+
+eureka:
+  instance:
+    hostname: comb-eureka
+    prefer-ip-address: true
+  server:
+    enable-self-preservation: false   # 设为false，关闭自我保护(生成环境建议开启此配置)
+    eviction-interval-timer-in-ms: 2000 # 清理间隔（单位毫秒，默认是60*1000，生成环境建议使用系统默认值）
+  client:
+    registerWithEureka: false  #在默认设置下，该服务注册中心也会将自己作为客户端来尝试注册它自己，所以我们需要禁用它的客户端注册行为
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
+logging:
+  level.root: info
+  file: ../logs/${spring.application.name}.log

@@ -1,0 +1,101 @@
+server:
+  port: 7979
+  tomcat:
+    uri-encoding: UTF-8
+
+security:
+  basic:
+    enabled: false               #  开启基于HTTP basic的认证
+#  user:
+#    name: root                 # 配置登录的账号是user
+#    password: root            # 配置登录的密码是password123
+#
+#eureka:
+#  instance:
+#    metadata-map:
+#      user:
+#        name: ${security.user.name}
+#        password: ${security.user.password}
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+    multipart:
+      enabled: true
+      max-request-size: 50MB
+      max-file-size: 50MB
+
+hystrix:
+  propagate:
+    request-attribute:
+      enabled: true
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+ribbon:
+  eager-load:
+    enabled: true
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: false
+  ConnectTimeout: 60000
+  ReadTimeout: 60000
+
+zuul:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  forceOriginalQueryStringEncoding: true
+  add-proxy-headers: true
+  add-host-header: true
+  ignoredServices: '*'
+  ratelimit:
+    key-prefix: comb-ratelimite
+    enabled: true
+    repository: REDIS
+    behind-proxy: true
+  routes:
+    auth-route:
+      path: /uaa/**
+      sensitiveHeaders:
+      service-id: comb-auth
+#      ribbon:
+#        eager-load:
+#          enabled: true
+#        MaxAutoRetries: 1
+#        MaxAutoRetriesNextServer: 2
+#        OkToRetryOnAllOperations: false
+#        ConnectTimeout: 10000
+#        ReadTimeout: 10000
+    uc-route:
+      path: /uc/**
+      sensitiveHeaders:
+      service-id: comb-provider-user
+#      ribbon:
+#        eager-load:
+#          enabled: true
+#        MaxAutoRetries: 1
+#        MaxAutoRetriesNextServer: 2
+#        OkToRetryOnAllOperations: false
+#        ConnectTimeout: 10000
+#        ReadTimeout: 10000
+    bus-route:
+      path: /bus/**
+      sensitiveHeaders:
+      service-id: comb-provider-bus
+#      ribbon:
+#        eager-load:
+#          enabled: true
+#        MaxAutoRetries: 1
+#        MaxAutoRetriesNextServer: 2
+#        OkToRetryOnAllOperations: false
+#        ConnectTimeout: 10000
+#        ReadTimeout: 10000

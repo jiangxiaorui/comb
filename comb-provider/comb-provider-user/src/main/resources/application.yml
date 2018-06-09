@@ -1,0 +1,58 @@
+spring:
+  profiles:
+    active: @profileActive@
+
+#feign:
+#  hystrix:
+#    enabled: true
+#  httpclient:
+#      enabled: false
+#  okhttp:
+#      enabled: true
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+
+logging:
+  level:
+    com.qhz.comb.provider.bus.api.feign.BorrowFeignClient: DEBUG
+    org.springframework.security: DEBUG
+
+#security:
+#  oauth2:
+#    resource:
+#      user-info-uri: http://localhost:5656/userinfo
+#      prefer-token-info: false
+#  basic:
+#    enabled: false
+
+#security:
+#  oauth2:
+#    resource:
+#      user-info-uri: http://localhost:5656/current
+#      id: ${spring.application.name:}
+#    client:
+#      clientId: server
+#      clientSecret: server
+#      accessTokenUri: http://localhost:5656/oauth/token
+#      grant-type: client_credentials
+#      scope: "select"
+#
+#management:
+#  security:
+#    enabled: false
+#feign:
+#  httpclient:
+#    enabled: false
+#  okhttp:
+#    enabled: true
+#comb:
+#  oauth2:
+#    client:
+#      id: ${security.oauth2.resource.id}
+#      accessTokenUrl: ${security.oauth2.client.accessTokenUri}
+#      clientId: ${security.oauth2.client.clientId}
+#      clientSecret: ${security.oauth2.client.clientSecret}
+#      clientAuthenticationScheme: header

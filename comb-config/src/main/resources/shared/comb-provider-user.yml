@@ -1,0 +1,54 @@
+server:
+  port: 8030
+  tomcat:
+    uri-encoding: UTF-8
+    remote-ip-header: x-forwarded-for
+  use-forward-headers: true
+
+security:
+  basic:
+    enabled: false               #  开启基于HTTP basic的认证
+
+spring:
+  cache:
+    cache-names: comb-provider-user-cache
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://mbox-db-mysql:3306/devmbox_hx?characterEncoding=utf8&useSSL=false
+    username: root
+    password: qianhezi@2015test
+    filters: stat,wall
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 30
+      test-on-borrow: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+
+#feign:
+#  hystrix:
+#    enabled: true
+#  httpclient:
+#      enabled: false
+#  okhttp:
+#      enabled: true
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+
+logging:
+  level:
+    com.qhz.comb.provider.bus.api.feign.BorrowFeignClient: DEBUG
+    org.springframework.security: DEBUG
+
+#comb:
+#  oauth2:
+#    client:
+#      id: ${security.oauth2.resource.id}
+#      accessTokenUrl: ${security.oauth2.client.accessTokenUri}
+#      clientId: ${security.oauth2.client.clientId}
+#      clientSecret: ${security.oauth2.client.clientSecret}
+#      clientAuthenticationScheme: header

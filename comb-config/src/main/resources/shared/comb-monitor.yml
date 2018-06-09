@@ -1,0 +1,37 @@
+server:
+  port: 8010
+
+security:
+  user:
+    name: admin
+    password: admin
+  basic:
+    enabled: true
+
+eureka:
+  instance:
+    metadata-map:
+      user:
+        name: ${security.user.name}
+        password: ${security.user.password}
+
+turbine:
+  stream:
+    port: 8011
+  clusterNameExpression: new String('default') #集群名称
+  app-config: comb-gateway #收集监控信息的服务名
+  combine-host-port: true
+
+spring:
+  boot:
+    admin:
+      client:
+        metadata:
+          user:
+            name: ${security.user.name}
+            password: ${security.user.password}
+      turbine:
+        clusters: default
+        location: http://localhost:${turbine.stream.port}
+      routes:
+        endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream,activiti

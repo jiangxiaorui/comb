@@ -1,0 +1,128 @@
+logging:
+  file: ../logs/${spring.application.name}.log
+
+spring:
+  rabbitmq:
+    host: mbox-rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  sleuth:
+    sampler:
+      percentage: 1
+  redis:
+    host: mbox-redis
+    port: 6379
+    password: qianhezi9876
+    database: 1
+    timeout: 0
+    pool:
+      max-active: 100
+      max-wait: 1
+      max-idle: 50
+      min-idle: 0
+  http:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+redis:
+  cache:
+    expiration: 3601
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 500
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+          strategy: SEMAPHORE
+
+
+ribbon:
+  eager-load:
+    enabled: true
+    clients: pig-auth,pig-upms-service
+  Httpclient:
+    enabled: false
+  OkHttp:
+    enabled: true
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      feignName:
+        connectTimeout: 30000
+        readTimeout: 30000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+
+#监控短点配置
+management:
+  security:
+    enabled: false
+endpoints:
+  actuator:
+    enabled: true
+  shutdown:
+    enabled: false
+
+eureka:
+  instance:
+    health-check-url-path: /health
+    status-page-url-path: /info
+    metadata-map:
+      management.context-path: ${server.context-path:}
+
+#mybatis配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  global-config:
+    id-type: 0  #0:数据库ID自增   1:用户输入id  2:全局唯一id(IdWorker)  3:全局唯一ID(uuid)
+    db-column-underline: true
+    refresh-mapper: true
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: true #配置的缓存的全局开关
+    lazyLoadingEnabled: true #延时加载的开关
+    multipleResultSetsEnabled: true #开启的话，延时加载一个属性时会加载该对象全部属性，否则按需加载属性
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句,调试用
+
+comb:
+  swagger2:
+    enable: true
+    base-package: com.qhz.comb
+    title : Comb
+    description: Comb Restful API docs
+    version: 1.0
+    apiName: Authorization
+    apiKeyName: Authorization
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://api-gateway:7979/uaa/current
+      id: ${spring.application.name:}
+    client:
+      clientId: server
+      clientSecret: server
+      accessTokenUri: http://api-gateway:7979/uaa/oauth/token
+      grant-type: client_credentials
+      scope: "select"
